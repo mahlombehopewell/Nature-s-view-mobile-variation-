@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nature's View - Explore the Wonders of Nature</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #111;
+      transition: 0.4s;
+    }
+
+    h1, h2, p, li {
+      color: aliceblue;
+    }
+
+    header {
+      background-color: aqua;
+      padding: 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 8px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #111;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      padding: 10px;
+    }
+
+    .home {
+      border-bottom: 5px solid aqua;
+    }
+
+    .home h1:hover {
+      color: aqua;
+    }
+
+    button {
+      padding: 8px 20px;
+      border: none;
+      border-radius: 5px;
+      background: aqua;
+      cursor: pointer;
+      margin: 10px auto;
+      display: block;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: rgb(61, 212, 212);
+      color: white;
+    }
+
+    .slideshow-container {
+      position: relative;
+      background-color: #222;
+      border-bottom: 5px solid aqua;
+    }
+
+    .slide {
+      display: none;
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      padding: 16px;
+      color: white;
+      background-color: rgba(0,0,0,0.5);
+      font-size: 18px;
+      border-radius: 3px;
+      user-select: none;
+    }
+
+    .next { right: 0; }
+    .prev { left: 0; }
+
+    .dots {
+      text-align: center;
+      padding: 10px;
+      background-color: #222;
+    }
+
+    .dot {
+      height: 12px;
+      width: 12px;
+      margin: 0 4px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background-color: aqua;
+    }
+
+    .credits {
+      text-align: center;
+      background-color: #222;
+      padding: 8px;
+      font-size: 0.9rem;
+    }
+
+    aside {
+      background-color: #1a1a1a;
+      padding: 20px;
+      border-top: 5px solid aqua;
+      border-radius: 5px;
+    }
+
+    aside h2 {
+      color: aqua;
+      text-align: center;
+    }
+
+    footer {
+      background-color: #0a0a0a;
+      border-top: 5px solid aqua;
+      padding: 20px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .contact-box {
+      background: #1b1b1b;
+      padding: 20px;
+      border-radius: 12px;
+      border-top: 2px solid aqua;
+      border-bottom: 2px solid aqua;
+      margin: auto;
+    }
+
+    .contact-box a {
+      color: aqua;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .light-theme {
+      background-color: rgb(83, 221, 175);
+      color: black;
+    }
+
+    .dark-theme {
+      background-color: #111;
+      color: aqua;
+    }
+
+    @media (min-width: 768px) {
+      main {
+        grid-template-columns: 1fr 0.6fr;
+      }
+
+      aside {
+        border-top: none;
+        border-left: 8px solid aqua;
+      }
+
+      .slide {
+        height: 400px;
+      }
+
+      nav {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body class="dark-theme">
+
+<header>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <section class="home">
+    <h1>Nature's View</h1>
+    <p>Welcome to Nature's View where nature displays its wonders.</p>
+  </section>
+
+  <button id="themeBtn">Change Theme</button>
+
+  <!-- ✅ FREE-TO-USE UNSPLASH IMAGES -->
+  <section class="slideshow-container">
+    <img class="slide active" src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=80" alt="Mountain landscape">
+
+    <img class="slide" src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1600&q=80" alt="Forest path">
+
+    <img class="slide" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80" alt="Waterfall">
+
+    <img class="slide" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80" alt="Ocean waves">
+
+    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+    <a class="next" onclick="changeSlide(1)">&#10095;</a>
+
+    <div class="dots">
+      <span class="dot active" onclick="currentSlide(0)"></span>
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+
+    <div class="credits">
+      Images from <a href="https://unsplash.com" target="_blank" style="color:inherit;">Unsplash</a> (Free to use)
+    </div>
+  </section>
+
+  <aside>
+    <h2>Facts About Nature</h2>
+    <ul>
+      <li>Forests cover about 31% of Earth's land area.</li>
+      <li>Oceans contain 97% of Earth's water.</li>
+      <li>Nature helps regulate climate and life.</li>
+    </ul>
+  </aside>
+</main>
+
+<footer id="contact">
+  <h2>Contact Me</h2>
+  <div class="contact-box">
+    <p>Email: <a href="mailto:mahlombehopewell@email.com">mahlombehopewell@email.com</a></p>
+  </div>
+  <p>&copy; 2026 Nature's View</p>
+</footer>
+
+<script>
+  const button = document.getElementById("themeBtn");
+  const body = document.body;
+
+  button.addEventListener("click", () => {
+    body.classList.toggle("dark-theme");
+    body.classList.toggle("light-theme");
+  });
+
+  let currentSlideIndex = 0;
+
+  function changeSlide(n) {
+    showSlide(currentSlideIndex += n);
+  }
+
+  function currentSlide(n) {
+    showSlide(currentSlideIndex = n);
+  }
+
+  function showSlide(n) {
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+
+    if (n >= slides.length) currentSlideIndex = 0;
+    if (n < 0) currentSlideIndex = slides.length - 1;
+
+    slides.forEach(s => s.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
+
+    slides[currentSlideIndex].classList.add('active');
+    dots[currentSlideIndex].classList.add('active');
+  }
+</script>
+
+</body>
+</html>
